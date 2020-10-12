@@ -1,0 +1,18 @@
+on: [push, pull_request]
+
+name: build conda recipes
+
+jobs:
+  conda-build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-versions: [3.6, 3.7, 3.8]
+    steps:
+      - uses: conda-incubator/setup-miniconda@v1
+      - uses: actions/checkout@v2
+      - name: build genecovr
+        run: conda build genecovr
+        
+        

@@ -1,0 +1,48 @@
+{% set version = "0.0.0.9006" %}
+{% set name = "genecovr" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+source:
+  fn: '{{ version }}.tar.gz'
+  url:
+    - 'https://github.com/NBISweden/genecovr/archive/0.0.0.9006.tar.gz'
+  sha256: fc267c158c3d004117dfd3a8606ed58e13337a6e81be22a3cc7c3e71c7369806
+build:
+  number: 0
+  rpaths:
+    - lib/R/lib/
+    - lib/
+requirements:
+  build:
+    - 'bioconductor-genomeinfodb >=1.13.1'
+    - 'bioconductor-genomicranges >=1.32.0'
+    - 'bioconductor-iranges >=2.11.16'
+    - 'bioconductor-s4vectors >=0.9.47'
+    - r-dplyr
+    - r-ggplot2
+    - r-rlang
+    - r-tidyr
+    - r-base
+  run:
+    - 'bioconductor-genomeinfodb >=1.13.1'
+    - 'bioconductor-genomicranges >=1.32.0'
+    - 'bioconductor-iranges >=2.11.16'
+    - 'bioconductor-s4vectors >=0.9.47'
+    - bioconductor-biocparallel
+    - bioconductor-rtracklayer
+    - r-devtools
+    - r-dplyr
+    - r-ggplot2
+    - r-rlang
+    - r-tidyr
+    - r-viridis
+    - r-base
+test:
+  commands:
+    - '$R -e "library(''{{ name }}'')"'
+about:
+  home: 'https://github.com/NBISweden/genecovr'
+  license: GNU General Public License v3.0
+  summary: 'Perform gene body coverage analyses in R to evaluate genome assembly quality.'
