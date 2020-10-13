@@ -28,6 +28,7 @@ requirements:
     - r-viridis
     - r-base
   run:
+    - bioconductor-biostrings
     - bioconductor-genomeinfodb
     - bioconductor-genomicranges
     - bioconductor-iranges
@@ -39,6 +40,7 @@ requirements:
     - r-ggplot2
     - r-rlang
     - r-tidyr
+    - r-viridis
     - r-base
 test:
   commands:
