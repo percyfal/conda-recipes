@@ -43,6 +43,7 @@ requirements:
 test:
   commands:
     - '$R -e "library(''{{ name }}'')"'
+    - genecovr
 about:
   home: 'https://github.com/NBISweden/genecovr'
   license: GNU General Public License v3.0
