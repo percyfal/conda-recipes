@@ -3,7 +3,7 @@ on: [push, pull_request]
 name: build conda recipes
 
 jobs:
-  conda-build:
+  conda-build-r-packages:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -14,7 +14,7 @@ jobs:
         with:
           python-version: 3.8
           mamba-version: "*"
-          channels: conda-forge,defaults
+          channels: conda-forge,bioconda,defaults
           channel-priority: true
       - uses: actions/checkout@v2
       - shell: bash -l {0}
@@ -26,9 +26,4 @@ jobs:
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
           PYTHON_VERSION: 3.8
           R_VERSION: ${{ matrix.R-version }}
-        run: |
-          conda config --show channels
-          conda config --add channels defaults
-          conda config --add channels bioconda
-          conda config --add channels conda-forge
-          mamba build --R "$R_VERSION" --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" genecovr
+        run: mamba build --R "$R_VERSION" --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" genecovr
