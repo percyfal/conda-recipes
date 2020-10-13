@@ -11,8 +11,18 @@ jobs:
         python-versions: [3.6, 3.7, 3.8]
     steps:
       - uses: conda-incubator/setup-miniconda@v1
+        with:
+          python-version: 3.6
+          mamba-version: "*"
+          channels: conda-forge,defaults
+          channel-priority: true
       - uses: actions/checkout@v2
+      - shell: bash -l {0}
+        name: install conda build
+        run: mamba install -n root conda-build
       - name: build genecovr
-        run: conda build genecovr
+        with:
+          anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
+        run: conda build genecovr --token ${{ secrets.ANACONDA_TOKEN }} --user percyfal
         
         
