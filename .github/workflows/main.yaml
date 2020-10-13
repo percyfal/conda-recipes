@@ -21,8 +21,6 @@ jobs:
         name: install conda build
         run: mamba install -n root conda-build
       - name: build genecovr
-        with:
-          anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
         run: conda build genecovr --token ${{ secrets.ANACONDA_TOKEN }} --user percyfal
         
         
