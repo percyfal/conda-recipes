@@ -16,6 +16,7 @@ build:
     - lib/
 requirements:
   build:
+    - bioconductor-biostrings
     - bioconductor-genomeinfodb
     - bioconductor-genomicranges
     - bioconductor-iranges
@@ -24,6 +25,7 @@ requirements:
     - r-ggplot2
     - r-rlang
     - r-tidyr
+    - r-viridis
     - r-base
   run:
     - bioconductor-genomeinfodb
@@ -37,7 +39,6 @@ requirements:
     - r-ggplot2
     - r-rlang
     - r-tidyr
-    - r-viridis
     - r-base
 test:
   commands:
