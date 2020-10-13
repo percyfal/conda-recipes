@@ -8,11 +8,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-versions: [3.6, 3.7, 3.8]
+        R-version: ["3.6"]
+        python-version: ["3.6", "3.7", "3.8"]
     steps:
       - uses: conda-incubator/setup-miniconda@v1
         with:
-          python-version: 3.6
+          python-version: ${{ matrix.python-version }}
           mamba-version: "*"
           channels: conda-forge,defaults
           channel-priority: true
@@ -24,8 +25,11 @@ jobs:
         name: build genecovr
         env:
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+          PYTHON_VERSION: ${{ matrix.python-version }}
+          R_VERSION: ${{ matrix.R-version }}
         run: |
           conda config --add channels defaults
           conda config --add channels bioconda
           conda config --add channels conda-forge
-          mamba build genecovr --token "$ANACONDA_TOKEN" --user percyfal
+          echo mamba build --R "$R_VERSION" --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" --user percyfal genecovr
+          mamba build --R "$R_VERSION" --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" --user percyfal genecovr
