@@ -16,20 +16,20 @@ build:
     - lib/
 requirements:
   build:
-    - 'bioconductor-genomeinfodb >=1.13.1'
-    - 'bioconductor-genomicranges >=1.32.0'
-    - 'bioconductor-iranges >=2.11.16'
-    - 'bioconductor-s4vectors >=0.9.47'
+    - bioconductor-genomeinfodb
+    - bioconductor-genomicranges
+    - bioconductor-iranges
+    - bioconductor-s4vectors
     - r-dplyr
     - r-ggplot2
     - r-rlang
     - r-tidyr
     - r-base
   run:
-    - 'bioconductor-genomeinfodb >=1.13.1'
-    - 'bioconductor-genomicranges >=1.32.0'
-    - 'bioconductor-iranges >=2.11.16'
-    - 'bioconductor-s4vectors >=0.9.47'
+    - bioconductor-genomeinfodb
+    - bioconductor-genomicranges
+    - bioconductor-iranges
+    - bioconductor-s4vectors
     - bioconductor-biocparallel
     - bioconductor-rtracklayer
     - r-devtools
