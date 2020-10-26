@@ -8,9 +8,9 @@ source:
   fn: '{{ version }}.tar.gz'
   url:
     - 'https://github.com/NBISweden/genecovr/archive/0.0.0.9008.tar.gz'
-  sha256: f09f3a38ad2e6a365c56c32bb932fe588f3b73baafab083e0a332dd250990ffd
+  sha256: b24736a55bfbc1c22b8b8ba85ea26823a791eae976d238ab75d213f22f5e5443
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
