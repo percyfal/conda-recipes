@@ -27,3 +27,9 @@ jobs:
           PYTHON_VERSION: 3.8
           R_VERSION: ${{ matrix.R-version }}
         run: mamba build --R "$R_VERSION" --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" genecovr
+      - shell: bash -l {0}
+        name: build kmer-jellyfish-python
+        env:
+          ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+          PYTHON_VERSION: 3.8
+        run: mamba build --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" kmer-jellyfish-python
