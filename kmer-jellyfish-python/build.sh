@@ -5,5 +5,4 @@ autoreconf -fi
 make
 make install
 cd swig/python
-python setup.py build
-python setup.py install --prefix=$PREFIX
+python setup.py install --record=record.txt --prefix=$PREFIX

@@ -14,7 +14,7 @@ source:
 
 requirements:
   host:
-    - python >=3.7
+    - python
   build:
     - {{ compiler('cxx') }}
     - autoconf
@@ -22,13 +22,15 @@ requirements:
     - gettext
     - libtool
     - pkg-config
-    - python >=3.7
+    - python
     - swig
     - yaggo >=1.5.8
+  run:
+    - python
 
 test:
-  requires:
-    - python >=3.7
+  imports:
+    - dna_jellyfish
   commands:
     - jellyfish --version 2>&1 > /dev/null
     - python -c 'import dna_jellyfish'
