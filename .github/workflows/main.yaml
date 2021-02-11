@@ -26,10 +26,27 @@ jobs:
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
           PYTHON_VERSION: 3.8
           R_VERSION: ${{ matrix.R-version }}
-        run: mamba build --R "$R_VERSION" --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" genecovr
+        run: conda build --R "$R_VERSION" --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" genecovr
+  conda-build-python-packages:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.7", "3.8", "3.9"]
+    steps:
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: 3.8
+          mamba-version: "*"
+          channels: conda-forge,bioconda,defaults
+          channel-priority: true
+      - uses: actions/checkout@v2
+      - shell: bash -l {0}
+        name: install conda build
+        run: mamba install -n root conda-build anaconda-client
       - shell: bash -l {0}
         name: build kmer-jellyfish-python
         env:
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
-          PYTHON_VERSION: 3.8
-        run: mamba build --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" kmer-jellyfish-python
+          PYTHON_VERSION: ${{ matrix.python-version }}
+        run: conda build --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" kmer-jellyfish-python

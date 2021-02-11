@@ -7,7 +7,6 @@ package:
 
 build:
   number: 0
-  noarch: python
 
 source:
   url: https://github.com/gmarcais/Jellyfish/releases/download/v{{ version }}/jellyfish-{{ version }}.tar.gz
@@ -26,10 +25,10 @@ requirements:
     - python >=3.7
     - swig
     - yaggo >=1.5.8
-  run:
-    - python >=3.7
 
 test:
+  requires:
+    - python >=3.7
   commands:
     - jellyfish --version 2>&1 > /dev/null
     - python -c 'import jellyfish'
@@ -38,7 +37,7 @@ about:
   home: http://www.genome.umd.edu/jellyfish.html
   license: GPL-3.0
   license_family: GPL
-  license_file: LICENSE
+  license_file: LICENSE-GPL-3.0
   summary: Jellyfish is a tool for fast, memory-efficient counting of k-mers in DNA. A k-mer is a substring of length k, and counting the occurrences of all such substrings is a central step in many analyses of DNA sequence
   dev_url: https://github.com/gmarcais/Jellyfish
 
