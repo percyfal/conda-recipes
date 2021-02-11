@@ -31,7 +31,7 @@ test:
     - python >=3.7
   commands:
     - jellyfish --version 2>&1 > /dev/null
-    - python -c 'import jellyfish'
+    - python -c 'import dna_jellyfish'
 
 about:
   home: http://www.genome.umd.edu/jellyfish.html
