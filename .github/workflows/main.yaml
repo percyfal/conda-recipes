@@ -3,12 +3,60 @@ on: [push, pull_request]
 name: build conda recipes
 
 jobs:
-  conda-build-r-packages:
+
+  # conda-build-r-packages:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       R-version: ["3.6", "4.0"]
+  #   steps:
+  #     - uses: conda-incubator/setup-miniconda@v2
+  #       with:
+  #         python-version: 3.8
+  #         mamba-version: "*"
+  #         channels: conda-forge,bioconda,defaults
+  #         channel-priority: true
+  #     - uses: actions/checkout@v2
+  #     - shell: bash -l {0}
+  #       name: install conda build
+  #       run: mamba install -n root conda-build anaconda-client
+  #     - shell: bash -l {0}
+  #       name: build genecovr
+  #       env:
+  #         ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+  #         PYTHON_VERSION: 3.8
+  #         R_VERSION: ${{ matrix.R-version }}
+  #       run: conda build --R "$R_VERSION" --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" genecovr
+
+  # conda-build-python-packages:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       python-version: ["3.7", "3.8", "3.9"]
+  #   steps:
+  #     - uses: conda-incubator/setup-miniconda@v2
+  #       with:
+  #         python-version: 3.8
+  #         mamba-version: "*"
+  #         channels: conda-forge,bioconda,defaults
+  #         channel-priority: true
+  #     - uses: actions/checkout@v2
+  #     - shell: bash -l {0}
+  #       name: install conda build
+  #       run: mamba install -n root conda-build anaconda-client
+  #     - shell: bash -l {0}
+  #       name: build kmer-jellyfish-python
+  #       env:
+  #         ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+  #         PYTHON_VERSION: ${{ matrix.python-version }}
+  #       run: conda build --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" kmer-jellyfish-python
+
+  conda-build-c-packages:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        R-version: ["3.6", "4.0"]
     steps:
       - uses: conda-incubator/setup-miniconda@v2
         with:
@@ -21,32 +69,7 @@ jobs:
         name: install conda build
         run: mamba install -n root conda-build anaconda-client
       - shell: bash -l {0}
-        name: build genecovr
+        name: build kmer-utils
         env:
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
-          PYTHON_VERSION: 3.8
-          R_VERSION: ${{ matrix.R-version }}
-        run: conda build --R "$R_VERSION" --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" genecovr
-  conda-build-python-packages:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.7", "3.8", "3.9"]
-    steps:
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          python-version: 3.8
-          mamba-version: "*"
-          channels: conda-forge,bioconda,defaults
-          channel-priority: true
-      - uses: actions/checkout@v2
-      - shell: bash -l {0}
-        name: install conda build
-        run: mamba install -n root conda-build anaconda-client
-      - shell: bash -l {0}
-        name: build kmer-jellyfish-python
-        env:
-          ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
-          PYTHON_VERSION: ${{ matrix.python-version }}
-        run: conda build --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" kmer-jellyfish-python
+        run: conda build --token "$ANACONDA_TOKEN" kmer-utils

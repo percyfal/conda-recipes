@@ -1,0 +1,34 @@
+{% set version = "0.0.0.9001" %}
+{% set base = "https://github.com/percyfal/kmer-utils/archive" %}
+{% set sha256 = "b6b6cbe87d1bb5ebf6ea2c37efe2d8aa85a8a39ad3966ae5f013430a05d50757" %}
+
+package:
+  name: kmer_utils
+  version: '{{version}}'
+
+source:
+  - url: '{{base}}/{{version}}.tar.gz' 
+    sha256: '{{sha256}}'                                         
+
+build:
+  number: 1
+  skip: True  # [win or osx]
+
+requirements:
+  build:
+    - meson
+    - {{ compiler('cxx') }}
+  host:
+    - kmer-jellyfish 2.*
+  run:
+    - kmer-jellyfish 2.*
+
+test:
+  commands:
+    - kmer_count_pairs 2>&1 > /dev/null
+
+
+about:
+  home: https://github.com/percyfal/kmer-utils
+  license: MIT
+  summary: kmer utilities
