@@ -1,6 +1,6 @@
-{% set version = "0.0.0.9002" %}
+{% set version = "0.0.0.9003" %}
 {% set base = "https://github.com/percyfal/kmer-utils/archive" %}
-{% set sha256 = "b21a0d583baf98fb53a76a043aeb89293bf1c82f66ee656bba80969cc0ee0248" %}
+{% set sha256 = "7fa052019c3bf30cdf9c314776bac8b50241e00e5cbd0c84459c0da094b7a378" %}
 
 package:
   name: kmer-utils
@@ -23,9 +23,9 @@ requirements:
   run:
     - kmer-jellyfish 2.*
 
-#test:
-#  commands:
-#    - kmer_count_pairs 2>&1 > /dev/null
+test:
+  commands:
+    - kmer_count_pairs -h 2>&1 > /dev/null
 
 
 about:
