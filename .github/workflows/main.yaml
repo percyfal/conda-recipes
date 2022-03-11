@@ -4,30 +4,30 @@ name: build conda recipes
 
 jobs:
 
-  # conda-build-r-packages:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       R-version: ["3.6", "4.0"]
-  #   steps:
-  #     - uses: conda-incubator/setup-miniconda@v2
-  #       with:
-  #         python-version: 3.8
-  #         mamba-version: "*"
-  #         channels: conda-forge,bioconda,defaults
-  #         channel-priority: true
-  #     - uses: actions/checkout@v2
-  #     - shell: bash -l {0}
-  #       name: install conda build
-  #       run: mamba install -n root conda-build anaconda-client
-  #     - shell: bash -l {0}
-  #       name: build genecovr
-  #       env:
-  #         ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
-  #         PYTHON_VERSION: 3.8
-  #         R_VERSION: ${{ matrix.R-version }}
-  #       run: conda build --R "$R_VERSION" --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" genecovr
+  conda-build-r-packages:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        R-version: ["3.6", "4.0", "4.1"]
+    steps:
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: 3.8
+          mamba-version: "*"
+          channels: conda-forge,bioconda,defaults
+          channel-priority: true
+      - uses: actions/checkout@v2
+      - shell: bash -l {0}
+        name: install conda build
+        run: mamba install -n root conda-build anaconda-client
+      - shell: bash -l {0}
+        name: build genecovr
+        env:
+          ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+          PYTHON_VERSION: 3.8
+          R_VERSION: ${{ matrix.R-version }}
+        run: conda build --R "$R_VERSION" --python "$PYTHON_VERSION" --token "$ANACONDA_TOKEN" genecovr
 
   # conda-build-python-packages:
   #   runs-on: ubuntu-latest
