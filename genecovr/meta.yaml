@@ -16,6 +16,7 @@ build:
     - lib/
 requirements:
   build:
+    - bioconductor-biocparallel
     - bioconductor-biostrings
     - bioconductor-genomeinfodb
     - bioconductor-genomicranges
