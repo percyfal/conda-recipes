@@ -1,4 +1,4 @@
-{% set version = "0.0.0.9013" %}
+{% set version = "0.0.0.9014" %}
 {% set name = "genecovr" %}
 
 package:
@@ -7,8 +7,8 @@ package:
 source:
   fn: '{{ version }}.tar.gz'
   url:
-    - 'https://github.com/NBISweden/genecovr/archive/0.0.0.9013.tar.gz'
-  sha256: 53e31291aac81fe6640503c9c7939e74d64951129caef765b79cf6ca9410ab2b
+    - 'https://github.com/NBISweden/genecovr/archive/0.0.0.9014.tar.gz'
+  sha256: b4772dd02d85293fac0045ab9b81ed1106ece73c6e5cba6b4eeeb799ac685869
 build:
   number: 0
   rpaths:
